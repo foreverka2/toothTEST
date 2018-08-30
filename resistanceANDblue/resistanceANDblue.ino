@@ -13,16 +13,19 @@ float current_volt0;
 float current_volt1;
 float current_volt2;
 float current_volt3;
-float res0; //측정 저항1
-float res1; //측정 저항2
-float res2; //측정 저항3
-float res3; //측정 저항4
+int res0; //측정 저항1
+int res1; //측정 저항2
+int res2; //측정 저항3
+int res3; //측정 저항4
 
 SoftwareSerial mySerial(RxPIN, TxPIN);
+byte buffer[1024];
+int bufferPosition;
 
 void setup() {
   Serial.begin(9600);
   mySerial.begin(9600);
+  bufferPosition = 0;
 }
 
 void loop() {
@@ -36,25 +39,15 @@ void loop() {
   res1 = Rref * ((current_volt1-current_volt2)/(source_volt-current_volt0));
   res2 = Rref * ((current_volt2-current_volt3)/(source_volt-current_volt0));
   res3 = Rref * ((current_volt3)/(source_volt-current_volt0));
-  
-  mySerial.print(res0,3);
 
+  String data0 = String(res0);
+  String data1 = String(res1);
+  String data2 = String(res2);
+  String data3 = String(res3);
+
+  /*pc에서 데이터 값을 받은 뒤 쉽게 처리시키기 위하여 한 줄의 string으로 보낸다.*/
+  mySerial.println('#' + data0 + ',' + data1 + ',' + data2 + ',' + data3); //블루투스의 센서값 송신
+  //Serial.write(mySerial.read()); //이건 pc에 써야함
   delay(500);
 
-  mySerial.print(res1,3);
-
-  delay(500);
-
-  mySerial.print(res2,3);
-  
-  delay(500);
-
-  mySerial.print(res3,3);
-
-  delay(2000);
-  Serial.write(mySerial.read());
-  Serial.write(mySerial.read());
-  Serial.write(mySerial.read());
-  Serial.write(mySerial.read());
-  
 }
