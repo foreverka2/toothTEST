@@ -5,6 +5,8 @@
 #define source_volt 5.0
 #define Rref 1000.0
 
+int MasterSignal = 0;
+
 int testinput0 = A0;
 int testinput1 = A1;
 int testinput2 = A2;
@@ -44,10 +46,39 @@ void loop() {
   String data1 = String(res1);
   String data2 = String(res2);
   String data3 = String(res3);
+  
+  mySerial.println('G'); // Slave인 아두이노에서 Master로 준비완료 신호 전송
+  delay(100);
+  MasterSignal = get_data(); // Master로부터 동작신호 수신
 
-  /*pc에서 데이터 값을 받은 뒤 쉽게 처리시키기 위하여 한 줄의 string으로 보낸다.*/
-  mySerial.println('#' + data0 + ',' + data1 + ',' + data2 + ',' + data3); //블루투스의 센서값 송신
-  //Serial.write(mySerial.read()); //이건 pc에 써야함
-  delay(500);
+  if(MasterSignal == 1) // Master로부터 동작을 허락받은 경우
+  {
+    /*블루투스 센서값 송신*/
+    mySerial.println(data0);
+    mySerial.println(data1);
+    mySerial.println(data2);
+    mySerial.println(data3);
+    MasterSignal = 0; // MasterSignal 초기화
+  }
 
+}
+
+
+ int get_data(){
+  int num;
+  while(true) 
+  {
+    if(mySerial.available())
+    {
+      if(mySerial.find('#'))
+      {
+        num = mySerial.parseInt();
+      }
+      else
+        continue;
+      return num;
+    }
+    else
+      continue;
+  }
 }

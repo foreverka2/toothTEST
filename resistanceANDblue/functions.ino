@@ -13,5 +13,3 @@
 
   return current_volt;
  }
-
-
