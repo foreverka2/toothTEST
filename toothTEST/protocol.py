@@ -12,14 +12,18 @@ def GetData():
         if temp == b'G\r\n':
             temp2 = blueSerial.readline()
             if temp2 != b'G\r\n':
-                data1 = int(temp2)
-                data2 = int(blueSerial.readline())
-                data3 = int(blueSerial.readline())
-                data4 = int(blueSerial.readline())
-                print(data1)
-                print(data2)
-                print(data3)
-                print(data4)
+                tempdata1 = temp2
+                tempdata2 = blueSerial.readline()
+                tempdata3 = blueSerial.readline()
+                tempdata4 = blueSerial.readline()
+                print("Sensor data 1 is : " + tempdata1)
+                print("Sensor data 2 is : " + tempdata2)
+                print("Sensor data 3 is : " + tempdata3)
+                print("Sensor data 4 is : " + tempdata4)
+                data1 = int(tempdata1)
+                data2 = int(tempdata2)
+                data3 = int(tempdata3)
+                data4 = int(tempdata4)
             else :
                 return -1, -1, -1, -1
         else :
