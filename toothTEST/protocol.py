@@ -4,7 +4,7 @@ import serial
 from time import sleep 
 
 blueSerial = serial.Serial( "/dev/rfcomm1", 9600 )
- 
+  
 
 def GetData():
     if blueSerial.readable() :
