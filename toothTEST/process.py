@@ -2,7 +2,7 @@ import protocol
 import httplib, urllib
 import time
 key = 'SVJ8DR6KDI9QPEBO'
-
+ 
 def SetR0():
     protocol.GoSignal()
     time.sleep(0.2)
