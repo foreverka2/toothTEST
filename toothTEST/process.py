@@ -1,6 +1,7 @@
 import protocol
 import httplib, urllib
 import time
+import visualization
 key = 'SVJ8DR6KDI9QPEBO'
  
 def SetR0():
@@ -45,7 +46,8 @@ def Cloud(R0_data1, R0_data2, R0_data3, R0_data4):
             data3 = 0
         if data4 < 0 :
             data4 = 0
-
+        
+        visualization.Visual(data1, data2, data3, data4)
         print("data 1 is : " + str(data1))
         print("data 2 is : " + str(data2))
         print("data 3 is : " + str(data3))
