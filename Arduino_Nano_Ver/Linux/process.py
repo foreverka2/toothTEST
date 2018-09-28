@@ -32,10 +32,10 @@ def Cloud(R0_data1, R0_data2, R0_data3, R0_data4):
             break
 
         '''Change from resistance to Pascal'''
-        data1 = R_data1 - R0_data1 #We can change this equation
-        data2 = R_data2 - R0_data2
-        data3 = R_data3 - R0_data3
-        data4 = R_data4 - R0_data4
+        data1 = ((R_data1 - R0_data1)*1000)/(R0_data1) #We can change this equation
+        data2 = ((R_data2 - R0_data2)*1000)/(R0_data2)
+        data3 = ((R_data3 - R0_data3)*1000)/(R0_data3)
+        data4 = ((R_data4 - R0_data4)*1000)/(R0_data4)
         
         '''Filtering Negative data'''
         if data1 < 0 :
@@ -47,7 +47,7 @@ def Cloud(R0_data1, R0_data2, R0_data3, R0_data4):
         if data4 < 0 :
             data4 = 0
         
-        visualization.Visual(data1, data2, data3, data4)
+        ##visualization.Visual(data1, data2, data3, data4)
         print("data 1 is : " + str(data1))
         print("data 2 is : " + str(data2))
         print("data 3 is : " + str(data3))
@@ -104,6 +104,7 @@ def Cloud(R0_data1, R0_data2, R0_data3, R0_data4):
             print "connection failed"
         print "All data is uploaded to cloud server!"
         print ""
+        return data1, data2, data3, data4
         break
 
 
