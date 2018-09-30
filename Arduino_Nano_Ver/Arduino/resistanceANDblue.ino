@@ -1,7 +1,7 @@
 #include <SoftwareSerial.h>
 
 #define RxPIN 2
-#define TxPIN 3 
+#define TxPIN 4 
 #define source_volt 5.0
 #define Rref 1000.0
 
