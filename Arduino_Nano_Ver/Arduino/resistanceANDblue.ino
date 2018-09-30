@@ -8,9 +8,9 @@
 int MasterSignal = 0;
 
 int testinput0 = A0;
-int testinput1 = A1;
-int testinput2 = A2;
-int testinput3 = A3;
+int testinput1 = A2;
+int testinput2 = A4;
+int testinput3 = A6;
 float current_volt0;
 float current_volt1;
 float current_volt2;
